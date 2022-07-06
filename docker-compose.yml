@@ -1,0 +1,28 @@
+version: "3.7"    
+services: 
+  go_app_name:
+    env_file:
+    - .env    
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      args:
+        API_PORT: 8080
+    container_name: ${APP_NAME}    
+    volumes:
+      - ./:/app
+      - /Users/fernando/containers/shared_www:/var/dev-repos/shared_www
+      - /Users/fernando/containers/properties/go:/var/dev-repos/properties
+      - /Users/fernando/containers/logs:/logs
+    ports:
+      - "${CONTAINER_PORT}:8080"
+    entrypoint: ["/bin/bash", "./scripts/entrypoint.dev.sh"]
+    networks:
+      - docker-network
+
+networks:
+  docker-network:
+    external: true
+volumes:
+  boilerplatevolume:
+    name: boilerplate-volume
