@@ -1,12 +1,13 @@
 package main
 
 import (
-	"go-unotv-skeleton/cmd/router"
-	"go-unotv-skeleton/pkg/application"
 	"os"
-	"unotv/go_utv_utils/pkg/exithandler"
-	"unotv/go_utv_utils/pkg/logging"
-	"unotv/go_utv_utils/pkg/server"
+
+	"github.com/etcsilver/go-skeleton.git/cmd/router"
+	"github.com/etcsilver/go-skeleton.git/pkg/application"
+	"github.com/etcsilver/go-skeleton.git/pkg/exithandler"
+	"github.com/etcsilver/go-skeleton.git/pkg/logging"
+	"github.com/etcsilver/go-skeleton.git/pkg/server"
 
 	"github.com/joho/godotenv"
 	"github.com/rs/zerolog/log"
@@ -17,15 +18,15 @@ import (
 // @description
 
 // @contact.name API Support
-// @contact.url http://www.unotv.com
-// @contact.email fernando.aviles@clarosports.com
+// @contact.url
+// @contact.email dilver@gmail.com
 
-// @host dev-go-utv-name.utv-infra.com
+// @host
 // @BasePath /
 // @schemes http
 func main() {
 	//Cargamos archivo env
-	if err := godotenv.Load("/var/dev-repos/properties/unotv.env", ".env"); err != nil {
+	if err := godotenv.Load(".env"); err != nil {
 		log.Error().Msg("Failed to load env vars")
 	}
 
@@ -50,7 +51,7 @@ func main() {
 	//***** Servidor
 	srv := server.
 		Get().
-		WithAddr(app.Cfg.GetAPIPort()).
+		WithAddr(":8080").
 		WithRouter(router.Get(app))
 	go func() {
 		log.Info().Msg("starting server at " + app.Cfg.GetAPIPort())

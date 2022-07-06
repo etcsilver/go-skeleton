@@ -1,6 +1,6 @@
 package domain
 
-import "go-unotv-skeleton/pkg/application"
+import "go-skeleton/pkg/application"
 
 type Service interface {
 	//PublicaNota(idNota string) error

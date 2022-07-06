@@ -1,22 +1,20 @@
-package confwf
+package confapp
 
 import (
 	"embed"
 	"flag"
+	"os"
 )
 
 var config embed.FS
 
 type Conf struct {
-	//PathFileParalimpicos         string
-	//DominioParalimpicos          string
-
+	Ambiente string
 }
 
 func Get() *Conf {
 	conf := &Conf{}
-	//flag.StringVar(&conf.PathFileParalimpicos, "Path Paralimpicos", os.Getenv("PAR_PATH_FILES"), "Path Paralimpicos")
-	//flag.StringVar(&conf.DominioParalimpicos, "Dominio Paralimpicos", os.Getenv("PAR_DOMINIO"), "Dominio Paralimpicos")
+	flag.StringVar(&conf.Ambiente, "Ambiente", os.Getenv("AMBIENTE"), "Ambiente")
 
 	flag.Parse()
 	return conf

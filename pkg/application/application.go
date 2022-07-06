@@ -1,21 +1,17 @@
 package application
 
-import (
-	"go_strtucut/pkg/confwf"
-	"unotv/go_utv_utils/pkg/config"
-)
+import "github.com/etcsilver/go-skeleton.git/pkg/confapp"
 
 type Application struct {
-	Cfg   *config.Config
-	CfgWF *confwf.Conf
+	CfgApp *confapp.Conf
 }
 
 func Get() (*Application, error) {
-	cfg := config.Get()
-	cfgWF := confwf.Get()
+
+	cfgApp := confapp.Get()
 
 	return &Application{
-		Cfg:   cfg,
-		CfgWF: cfgWF,
+
+		CfgApp: cfgApp,
 	}, nil
 }
