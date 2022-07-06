@@ -54,7 +54,7 @@ func main() {
 		WithAddr(":8080").
 		WithRouter(router.Get(app))
 	go func() {
-		log.Info().Msg("starting server at " + app.Cfg.GetAPIPort())
+		log.Info().Msg("starting server ")
 		if err := srv.Start(); err != nil {
 			log.Error().Msg("Server error: " + err.Error())
 		}

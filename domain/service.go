@@ -1,9 +1,9 @@
 package domain
 
-import "go-skeleton/pkg/application"
+import "github.com/etcsilver/go-skeleton.git/pkg/application"
 
 type Service interface {
-	//PublicaNota(idNota string) error
+	Hello(name string) (error, string)
 }
 
 type Repository interface {
@@ -18,10 +18,13 @@ type WebServices interface {
 type service struct {
 	app         *application.Application
 	webservices WebServices
-	repoMongo   Repository
 }
 
 //NewWorkflowService...
-func NewWorkflowService(app *application.Application, webservices WebServices, repository Repository) Service {
-	return &service{app: app, webservices: webservices, repoMongo: repository}
+func NewWorkflowService(app *application.Application, webservices WebServices) Service {
+	return &service{app: app, webservices: webservices}
+}
+
+func (s *service) Hello(name string) (error, string) {
+	return nil, "Hola " + name
 }

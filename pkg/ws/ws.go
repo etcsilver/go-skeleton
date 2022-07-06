@@ -1,8 +1,8 @@
 package ws
 
 import (
-	"go-unotv-skeleton/domain"
-	"go-unotv-skeleton/pkg/application"
+	"github.com/etcsilver/go-skeleton.git/domain"
+	"github.com/etcsilver/go-skeleton.git/pkg/application"
 )
 
 type webservices struct {

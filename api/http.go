@@ -2,7 +2,8 @@ package api
 
 import (
 	"net/http"
-	"olimpicos/go_par_workflow/domain"
+
+	"github.com/etcsilver/go-skeleton.git/domain"
 
 	"github.com/gin-gonic/gin"
 	"github.com/rs/zerolog/log"
@@ -20,10 +21,10 @@ func NewHandler(service domain.Service) WorkflowHandler {
 }
 
 // Publica Nota godoc
-// @Summary      Publica nota.
-// @Description  Publica nota en el webserver.
-// @Tags         workflow
-// @Param        requestNota   body domain.RequestNota  true  "id nota"
+// @Summary
+// @Description
+// @Tags
+// @Param        request   body domain.RequestNota  true  "id nota"
 // @Success      200      {object} domain.SuccessRespose "Nota Publicada"
 // @Failure      500      {object} domain.ErrorRespose "Error publicando la nota"
 // @Router       /hello [get]
@@ -31,11 +32,11 @@ func (h *handler) Hello(c *gin.Context) {
 	log.Debug().Msg("--== Inicia Hello ==--")
 	name := c.Param("name")
 	log.Debug().Msg("name: " + name)
-	err := h.service.Hello(name)
+	err, saludo := h.service.Hello(name)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"code": http.StatusInternalServerError, "message": "Error: " + err.Error()})
 		return
 	}
-	log.Debug().Msg("--== FIN PublicaNota ==--")
-	c.JSON(http.StatusOK, gin.H{"code": http.StatusOK, "message": "Nota Publicada"})
+	log.Debug().Msg("--== FIN Hello ==--")
+	c.JSON(http.StatusOK, gin.H{"code": http.StatusOK, "message": saludo})
 }
