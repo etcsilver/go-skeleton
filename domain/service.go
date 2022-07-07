@@ -1,14 +1,16 @@
 package domain
 
-import "github.com/etcsilver/go-skeleton.git/pkg/application"
+import (
+	"github.com/etcsilver/go-skeleton.git/pkg/application"
+	"github.com/rs/zerolog/log"
+)
 
 type Service interface {
-	Hello(name string) (error, string)
+	Hello(name string) (string, error)
 }
 
 type Repository interface {
 	//NotaUpdate(selector interface{}, update interface{}) error
-
 }
 
 //
@@ -25,6 +27,7 @@ func NewWorkflowService(app *application.Application, webservices WebServices) S
 	return &service{app: app, webservices: webservices}
 }
 
-func (s *service) Hello(name string) (error, string) {
-	return nil, "Hola " + name
+func (s *service) Hello(name string) (string, error) {
+	log.Debug().Msg("name: " + name)
+	return "Hola " + name, nil
 }

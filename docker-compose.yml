@@ -1,6 +1,6 @@
 version: "3.7"    
 services: 
-  go_app_name:
+  go_app_skeleton:
     env_file:
     - .env    
     build:

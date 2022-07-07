@@ -30,13 +30,17 @@ func NewHandler(service domain.Service) WorkflowHandler {
 // @Router       /hello [get]
 func (h *handler) Hello(c *gin.Context) {
 	log.Debug().Msg("--== Inicia Hello ==--")
-	name := c.Param("name")
-	log.Debug().Msg("name: " + name)
-	err, saludo := h.service.Hello(name)
+	requestHello := &domain.Hello{}
+	if err := c.ShouldBindJSON(&requestHello); err != nil {
+		c.JSON(http.StatusInternalServerError, domain.ErrorRespose{Code: http.StatusInternalServerError, Message: "Error json: " + err.Error()})
+		return
+	}
+
+	saludo, err := h.service.Hello(requestHello.Name)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"code": http.StatusInternalServerError, "message": "Error: " + err.Error()})
 		return
 	}
 	log.Debug().Msg("--== FIN Hello ==--")
-	c.JSON(http.StatusOK, gin.H{"code": http.StatusOK, "message": saludo})
+	c.JSON(http.StatusOK, domain.SuccessRespose{Code: http.StatusOK, Message: saludo})
 }

@@ -13,9 +13,9 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-// @title
+// @title go_app_skeleton
 // @version 1.0
-// @description
+// @description Estructura projecto Go
 
 // @contact.name API Support
 // @contact.url

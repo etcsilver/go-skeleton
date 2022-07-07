@@ -27,9 +27,9 @@ https://swagger.unotv.com
 ```
 ### Pruebas Locales
 curl -v -X POST \
-  http://localhost:9037/method_name \
+  http://localhost:9037/hello \
   -H 'content-type: application/json' \
-  -d '{ "id": "46169" }'
+  -d '{ "nombre": "Fernando" }'
 
 ```
 
